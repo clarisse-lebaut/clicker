@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="#" type="image/x-icon" />
+    <title>Clicker</title>
+    <script src="jeremy.js" defer></script>
+  </head>
+  <body>
+    <div>
+      <h1>Boutique</h1>
+      <details>
+        <summary>Améliorations</summary>
+        <ul id="upgradesListItems">
+          <li>
+            <img src="" alt="" />
+            <span>Tests</span>
+            <button type="button">Acheter</button>
+          </li>
+          <li>
+            <img src="" alt="" />
+            <span>Tests</span>
+            <button type="button">Acheter</button>
+          </li>
+          <li>
+            <img src="" alt="" />
+            <span>Tests</span>
+            <button type="button">Acheter</button>
+          </li>
+        </ul>
+      </details>
+      <div>
+        <div>
+          <div>
+            <label for="transactionMode1">
+              <input
+                type="radio"
+                name="transactionModes"
+                id="transactionMode1"
+                value="buy"
+                checked
+              />
+              Acheter
+            </label>
+            <label for="transactionMode2">
+              <input type="radio" name="transactionModes" id="transactionMode2" value="sell" />
+              Vendre
+            </label>
+          </div>
+          <div>
+            <label for="transactionQuantitie1">
+              <input
+                type="radio"
+                name="transactionQuantities"
+                id="transactionQuantitie1"
+                value="1"
+                checked
+              />
+              <span>+1</span>
+            </label>
+            <label for="transactionQuantitie2">
+              <input
+                type="radio"
+                name="transactionQuantities"
+                id="transactionQuantitie2"
+                value="10"
+              />
+              <span>+10</span>
+            </label>
+            <label for="transactionQuantitie3">
+              <input
+                type="radio"
+                name="transactionQuantities"
+                id="transactionQuantitie3"
+                value="100"
+              />
+              <span>+100</span>
+            </label>
+          </div>
+        </div>
+        <div id="automatesListItems"></div>
+      </div>
+    </div>
+  </body>
+</html>
