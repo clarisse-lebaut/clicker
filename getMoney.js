@@ -11,4 +11,20 @@ let solde = document.querySelector("#addMoney"); // to make appear the number of
     });
     console.log("check");
 }
+
+// function for level up
+function levelUp(){
+    let info = "LevelUp";
+    if(money === 5){
+        alert(info);
+    }
+    if (money === 10){
+        alert(info);
+    }
+    if (money === 15){
+        alert(info);
+    }
+}
+
 add();
+levelUp();
