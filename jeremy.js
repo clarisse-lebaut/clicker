@@ -2,11 +2,12 @@ const automatesListItems = document.querySelector('#automatesListItems');
 const transactionModes = document.getElementsByName('transactionModes');
 const transactionQuantities = document.getElementsByName('transactionQuantities');
 
-/**
- * Gets the value of the checked radio button for the transaction mode.
- * @returns {string} Can return "buy" or "sell".
- */
-function getTransactionMode() {
+let purchasedAutomates = null;
+const moneyIncreasingRate = 2.5;
+let money = 1000.0;
+const numberFormat = Intl.NumberFormat('fr-FR');
+
+function getTransactionModeValue() {
   let output = '';
 
   transactionModes.forEach((transactionMode) => {
@@ -18,76 +19,102 @@ function getTransactionMode() {
   return output;
 }
 
-/**
- * Gets the value of the checked radio button for the transaction quantity.
- * @returns {number} Can return 1, 10 or 100.
- */
-function getTransactionQuantity() {
-  let value = 0;
+function getTransactionQuantityValue() {
+  let output = '';
 
   transactionQuantities.forEach((transactionQuantity) => {
     if (transactionQuantity.checked) {
-      value = parseInt(transactionQuantity.value);
+      output = transactionQuantity.value;
     }
   });
 
-  return value;
+  return output;
 }
 
-// Gets initialy the default transaction mode and transaction quantity.
-let currentTransactionMode = getTransactionMode();
-let currentTransactionQuantity = getTransactionQuantity();
+function addAutomateItem(purchasedAutomate) {
+  let currentCost = purchasedAutomate.object.cost * purchasedAutomate.count * moneyIncreasingRate;
 
-// Shows each automate inside the JSON database.
+  const container = document.createElement('div');
+  container.style.userSelect = 'none';
+  container.style.cursor = 'pointer';
+  container.innerText = `> ${purchasedAutomate.object.name} | Cost: ${
+    currentCost === 0
+      ? numberFormat.format(purchasedAutomate.object.cost) + ' €'
+      : numberFormat.format(currentCost) + ' €'
+  } | Count: ${purchasedAutomate.count}`;
+
+  container.addEventListener('click', () => {
+    if (getTransactionModeValue() === 'buy') {
+      purchasedAutomate.count += parseInt(getTransactionQuantityValue());
+    } else {
+      let transactionQuantity = parseInt(getTransactionQuantityValue());
+
+      if (purchasedAutomate.count - transactionQuantity <= 0) {
+        purchasedAutomate.count = 0;
+      } else {
+        purchasedAutomate.count -= transactionQuantity;
+      }
+    }
+
+    currentCost = purchasedAutomate.object.cost * purchasedAutomate.count * moneyIncreasingRate;
+    window.localStorage.setItem('purchasedAutomates', JSON.stringify(purchasedAutomates));
+    container.innerText = `> ${purchasedAutomate.object.name} | Cost: ${
+      currentCost === 0
+        ? numberFormat.format(purchasedAutomate.object.cost) + ' €'
+        : numberFormat.format(currentCost) + ' €'
+    } | Count: ${purchasedAutomate.count}`;
+
+    updateAutomateShopList();
+  });
+
+  automatesListItems.appendChild(container);
+}
+
+function updateAutomateShopList() {
+  // Clear of child inside the shopping list.
+  automatesListItems.replaceChildren();
+
+  // Generates the listing of automates in the shop.
+  purchasedAutomates.forEach((purchasedAutomate) => {
+    if (money >= purchasedAutomate.object.unlockCost) {
+      addAutomateItem(purchasedAutomate);
+    }
+  });
+}
+
 fetch('shop.json')
   .then((response) => response.json())
   .then((data) => {
-    let automates = data.automates;
+    // Generates local variables
+    if (window.localStorage.getItem('purchasedAutomates') === null) {
+      window.localStorage.setItem('purchasedAutomates', JSON.stringify([]));
+    }
 
-    automates.forEach((automate) => {
-      const item = document.createElement('div');
+    const automates = data.automates;
+    purchasedAutomates = JSON.parse(window.localStorage.getItem('purchasedAutomates'));
 
-      const countText = document.createElement('p');
-      countText.innerText = '0';
-      item.appendChild(countText);
+    // Adds all automates with a buy amount of 0.
+    if (purchasedAutomates.length === 0) {
+      automates.forEach((automate) => {
+        purchasedAutomates.push({
+          object: automate,
+          count: 0,
+        });
+      });
 
-      const titleText = document.createElement('p');
-      titleText.innerText = automate.name;
-      item.appendChild(titleText);
+      window.localStorage.setItem('purchasedAutomates', JSON.stringify(purchasedAutomates));
+    } else if (purchasedAutomates.length !== automates.length) {
+      for (let i = 0; i < automates.length; i++) {
+        let automate = automates[i];
 
-      const costText = document.createElement('p');
-      costText.innerText = automate.cost;
-      item.appendChild(costText);
-
-      // Perfoms the transaction depending on the transaction mode and the transaction quantity.
-      // And modifies the count of automate.
-      item.addEventListener('click', () => {
-        let currentCount = parseInt(countText.innerText);
-
-        if (currentTransactionMode === 'buy') {
-          currentCount += currentTransactionQuantity;
-        } else {
-          currentCount -= currentTransactionQuantity;
+        if (purchasedAutomates.includes(automate)) {
+          continue;
         }
 
-        countText.innerText = currentCount;
-      });
+        purchasedAutomates.push(automate);
+      }
+    }
 
-      automatesListItems.appendChild(item);
-    });
-
-    // Performs a modification of the transaction mode when clicking on each radio button.
-    modes.forEach((mode) => {
-      mode.addEventListener('click', () => {
-        currentTransactionMode = getTransactionMode();
-      });
-    });
-
-    // Performs a modification of the transaction quantity when clicking on each radio button.
-    quantities.forEach((quantity) => {
-      quantity.addEventListener('click', () => {
-        currentTransactionQuantity = getTransactionQuantity();
-      });
-    });
+    updateAutomateShopList();
   })
   .catch((error) => console.error(error));
