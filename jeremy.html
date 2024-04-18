@@ -9,21 +9,13 @@
     <script src="jeremy.js" defer></script>
   </head>
   <body>
+    <p id="money"></p>
+    <button id="btnGetMoney">Money</button>
     <div>
       <h1>Boutique</h1>
       <details>
         <summary>Améliorations</summary>
         <ul id="upgradesListItems">
-          <li>
-            <img src="" alt="" />
-            <span>Tests</span>
-            <button type="button">Acheter</button>
-          </li>
-          <li>
-            <img src="" alt="" />
-            <span>Tests</span>
-            <button type="button">Acheter</button>
-          </li>
           <li>
             <img src="" alt="" />
             <span>Tests</span>
@@ -58,7 +50,7 @@
                 value="1"
                 checked
               />
-              <span>+1</span>
+              <span class="transactionQuantitiesLabel">1</span>
             </label>
             <label for="transactionQuantitie2">
               <input
@@ -67,7 +59,7 @@
                 id="transactionQuantitie2"
                 value="10"
               />
-              <span>+10</span>
+              <span class="transactionQuantitiesLabel">10</span>
             </label>
             <label for="transactionQuantitie3">
               <input
@@ -76,7 +68,7 @@
                 id="transactionQuantitie3"
                 value="100"
               />
-              <span>+100</span>
+              <span class="transactionQuantitiesLabel">100</span>
             </label>
             <label for="transactionQuantitie4">
               <input
@@ -85,7 +77,7 @@
                 id="transactionQuantitie4"
                 value="1000"
               />
-              <span>+1000</span>
+              <span class="transactionQuantitiesLabel">1000</span>
             </label>
           </div>
         </div>
