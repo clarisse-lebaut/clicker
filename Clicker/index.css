@@ -8,7 +8,6 @@ body{
     overflow: scroll;
     overflow-y: visible;
     overflow-x: hidden;
-
 }
 
 h1{
@@ -70,6 +69,7 @@ h1{
 .rain-money {
     transition: .10s;
     animation: slideDown .5s;
+    z-index: -1;
 }
 
 @keyframes slideDown {

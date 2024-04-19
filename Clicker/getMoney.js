@@ -1,6 +1,7 @@
 
 // ---------------------------------------------------------------------------
 let money = 0; // on définit le nombre de point à 0
+const numberFormat = Intl.NumberFormat("fr-FR")
 
 // ---------------------------------------------------------------------------
 // fonction qui permet de de faire augmenter au clic le nombre de points
@@ -8,7 +9,8 @@ function add(){
 let solde = document.querySelector("#addMoney"); // ici on récupère la div dans laquelle on va faire appaitre le nombre grandissant
     const image = document.getElementById("getMoney"); // ici on récupère les évènement sur le bouton (en gros le clic)
     image.addEventListener("click", () => {
-        solde.textContent = `${++money} €`; //on augmente la valeur a chaque click, c'est une incrémentation de +1 par rapport ) la variable money, et elle apparait dans le corps de la page web
+        money++;
+        solde.textContent = `${numberFormat.format(money)} €`; //on augmente la valeur a chaque click, c'est une incrémentation de +1 par rapport ) la variable money, et elle apparait dans le corps de la page web
         levelUp(); // on appel une fonction qui en dehors de cette fonction (on stock un élément)
     });
     console.log("pour être sur qu'elle est bien appeler") // bon là 'est juste pour voir ce qui se passe dans la console, être sur que la fonction est appele
@@ -80,7 +82,7 @@ function randomElement(){
     randomBonusCard.appendChild(bonus);
     randomBonusCard.classList.add('savage-bonus-style');
 
-     const windowWidth = window.innerWidth;
+    const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
 
     const randomX = Math.floor(Math.random() * (windowWidth - bonus.offsetWidth));
@@ -92,9 +94,10 @@ function randomElement(){
 
     let ajout = document.getElementById('addMoney');
     randomBonusCard.addEventListener("click", () => {
+        money+=100000;
+        ajout.textContent = numberFormat.format(money) + " €";
 
-        ajout.textContent = money + 100000;
-        console.log("+ 100 000")
+        console.log("+ 100 000");
      }
     )
 
@@ -176,7 +179,7 @@ function automateCard(){
         newCard.classList.add("automate-card-style");
 
         const icon = document.createElement('img');
-        icon.src = "./img/jpg/boursier.jpg"
+        icon.src = "asset/icon/actionnaire.jpeg"
         icon.classList.add("automate-icon");
 
         newCard.appendChild(icon)
@@ -184,6 +187,12 @@ function automateCard(){
 
     });
 
+}
+/**
+ * @param {HTMLElement} listen 
+ */
+function updateListPurchased(listen) {
+    listen.parentNode.replaceChildren()
 }
 
 automateCard();
