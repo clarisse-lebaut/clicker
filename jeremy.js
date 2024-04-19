@@ -1,18 +1,18 @@
-const elemMoney = document.getElementById('money');
-const btnGetMoney = document.getElementById('btnGetMoney');
-const upgradesListItems = document.querySelector('#upgradesListItems');
-const automatesListItems = document.querySelector('#automatesListItems');
-const transactionModes = document.getElementsByName('transactionModes');
-const transactionQuantities = document.getElementsByName('transactionQuantities');
-const transactionQuantitiesLabel = document.querySelectorAll('.transactionQuantitiesLabel');
+const elemMoney = document.getElementById("money");
+const btnGetMoney = document.getElementById("btnGetMoney");
+const upgradesListItems = document.querySelector("#upgradesListItems");
+const automatesListItems = document.querySelector("#automatesListItems");
+const transactionModes = document.getElementsByName("transactionModes");
+const transactionQuantities = document.getElementsByName("transactionQuantities");
+const transactionQuantitiesLabel = document.querySelectorAll(".transactionQuantitiesLabel");
 
 let purchasedAutomates = null;
 let money = 0;
-const numberFormat = Intl.NumberFormat('fr-FR');
+const numberFormat = Intl.NumberFormat("fr-FR");
 let interval = null;
 
 function getTransactionModeValue() {
-  let output = '';
+  let output = "";
 
   transactionModes.forEach((transactionMode) => {
     if (transactionMode.checked) {
@@ -24,7 +24,7 @@ function getTransactionModeValue() {
 }
 
 function getTransactionQuantityValue() {
-  let output = '';
+  let output = "";
 
   transactionQuantities.forEach((transactionQuantity) => {
     if (transactionQuantity.checked) {
@@ -38,19 +38,19 @@ function getTransactionQuantityValue() {
 function addAutomateItem(purchasedAutomate) {
   let currentCost = purchasedAutomate.object.cost * purchasedAutomate.count;
 
-  const container = document.createElement('div');
-  container.style.userSelect = 'none';
-  container.style.cursor = 'pointer';
+  const container = document.createElement("div");
+  container.style.userSelect = "none";
+  container.style.cursor = "pointer";
   container.innerText = `> ${purchasedAutomate.object.name} | Cost: ${
     currentCost === 0
-      ? numberFormat.format(purchasedAutomate.object.cost) + ' €'
-      : numberFormat.format(currentCost) + ' €'
+      ? numberFormat.format(purchasedAutomate.object.cost) + " €"
+      : numberFormat.format(currentCost) + " €"
   } | Count: ${purchasedAutomate.count}`;
 
-  container.addEventListener('click', () => {
+  container.addEventListener("click", () => {
     let transactionQuantity = parseInt(getTransactionQuantityValue());
 
-    if (getTransactionModeValue() === 'buy') {
+    if (getTransactionModeValue() === "buy") {
       if (money >= currentCost) {
         purchasedAutomate.count += parseInt(getTransactionQuantityValue());
         money -= currentCost;
@@ -67,12 +67,12 @@ function addAutomateItem(purchasedAutomate) {
 
     currentCost = purchasedAutomate.object.cost * purchasedAutomate.count * transactionQuantity;
 
-    window.localStorage.setItem('purchasedAutomates', JSON.stringify(purchasedAutomates));
+    window.localStorage.setItem("purchasedAutomates", JSON.stringify(purchasedAutomates));
     elemMoney.innerText = `Money: ${numberFormat.format(money)} €`;
     container.innerText = `> ${purchasedAutomate.object.name} | Cost: ${
       currentCost === 0
-        ? numberFormat.format(purchasedAutomate.object.cost) + ' €'
-        : numberFormat.format(currentCost) + ' €'
+        ? numberFormat.format(purchasedAutomate.object.cost) + " €"
+        : numberFormat.format(currentCost) + " €"
     } | Count: ${purchasedAutomate.count}`;
 
     updateAutomateShopList();
@@ -98,26 +98,26 @@ function updateQuantitiesText() {
     const transactionQuantityLabel = transactionQuantitiesLabel[i];
     const transactionQuantity = transactionQuantities[i];
 
-    if (getTransactionModeValue() === 'buy') {
-      transactionQuantityLabel.innerText = '+ ' + transactionQuantity.value;
+    if (getTransactionModeValue() === "buy") {
+      transactionQuantityLabel.innerText = "+ " + transactionQuantity.value;
     } else {
-      transactionQuantityLabel.innerText = '- ' + transactionQuantity.value;
+      transactionQuantityLabel.innerText = "- " + transactionQuantity.value;
     }
   }
 }
 
-fetch('shop.json')
+fetch("shop.json")
   .then((response) => response.json())
   .then((data) => {
-    if (window.localStorage.getItem('purchasedAutomates') === null) {
-      window.localStorage.setItem('purchasedAutomates', JSON.stringify([]));
+    if (window.localStorage.getItem("purchasedAutomates") === null) {
+      window.localStorage.setItem("purchasedAutomates", JSON.stringify([]));
     }
 
     const automates = data.automates;
-    purchasedAutomates = JSON.parse(window.localStorage.getItem('purchasedAutomates'));
+    purchasedAutomates = JSON.parse(window.localStorage.getItem("purchasedAutomates"));
 
     elemMoney.innerText = `Money: ${numberFormat.format(money)} €`;
-    btnGetMoney.addEventListener('click', () => {
+    btnGetMoney.addEventListener("click", () => {
       let yield = 1;
 
       purchasedAutomates.forEach((purchasedAutomate) => {
@@ -138,7 +138,7 @@ fetch('shop.json')
         });
       });
 
-      window.localStorage.setItem('purchasedAutomates', JSON.stringify(purchasedAutomates));
+      window.localStorage.setItem("purchasedAutomates", JSON.stringify(purchasedAutomates));
     } else if (purchasedAutomates.length !== automates.length) {
       for (let i = 0; i < automates.length; i++) {
         let automate = automates[i];
@@ -154,7 +154,7 @@ fetch('shop.json')
     updateQuantitiesText();
 
     transactionModes.forEach((transactionMode) => {
-      transactionMode.addEventListener('click', () => {
+      transactionMode.addEventListener("click", () => {
         updateQuantitiesText();
       });
     });

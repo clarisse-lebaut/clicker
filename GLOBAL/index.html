@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="#" type="image/x-icon" />
+    <title>Clicker</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <!-- JAVASCRIPT -->
+    <script src="assets/js/script.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div>
+        <div>
+          <h1>Clicker - Capitalise ton click</h1>
+          <p class="login-time">
+            Temps de jeu :
+            <span id="hours">00</span> : <span id="minutes">00</span> : <span id="seconds">00</span>
+          </p>
+        </div>
+      </div>
+    </header>
+    <main>
+      <!-- click zone -->
+      <div id="randomBonusCard"></div>
+      <div class="container">
+        <div id="sold">
+          <article id="info-money">
+            <div id="addMoney" class="money">0 €</div>
+            <img class="save" src="assets/img/tirelire.png" alt="tirelire" />
+          </article>
+        </div>
+        <article id="click_zone">
+          <div>
+            <button id="getMoney">
+              <img id="pic" src="assets/img/billetjaune.svg" alt="billetjaune" />
+            </button>
+          </div>
+        </article>
+        <section id="bonus_zone">
+          <!-- shop zone -->
+          <article id="shop_zone">
+            <div class="shop_zone">
+              <p id="shop-title">BOUTIQUE</p>
+              <p id="shop-title-slogan">
+                Avoir de l'argent <span class="style-font">c'est bien</span>,
+                <br />
+                en avoir plein <span class="style-font"> c'est mieux </span>
+              </p>
+            </div>
+            <div id="level">
+              <div>
+                <div>
+                  <div class="nav-transaction-category">
+                    <label class="color-one" for="transactionMode1">
+                      <input
+                        type="radio"
+                        name="transactionModes"
+                        id="transactionMode1"
+                        value="buy"
+                        checked
+                      />
+                      Acheter
+                    </label>
+                    <label class="color-two" for="transactionMode2">
+                      <input
+                        type="radio"
+                        name="transactionModes"
+                        id="transactionMode2"
+                        value="sell"
+                      />
+                      Vendre
+                    </label>
+                  </div>
+                  <div class="nav-transaction-quantitie">
+                    <label class="color" for="transactionQuantitie1">
+                      <input
+                        type="radio"
+                        name="transactionQuantities"
+                        id="transactionQuantitie1"
+                        value="1"
+                        checked
+                      />
+                      <span class="transactionQuantitiesLabel">1</span>
+                    </label>
+                    <label class="color" for="transactionQuantitie2">
+                      <input
+                        type="radio"
+                        name="transactionQuantities"
+                        id="transactionQuantitie2"
+                        value="10"
+                      />
+                      <span class="transactionQuantitiesLabel">10</span>
+                    </label>
+                    <label class="color" for="transactionQuantitie3">
+                      <input
+                        type="radio"
+                        name="transactionQuantities"
+                        id="transactionQuantitie3"
+                        value="100"
+                      />
+                      <span class="transactionQuantitiesLabel">100</span>
+                    </label>
+                  </div>
+                </div>
+                <div id="automatesListItems"></div>
+              </div>
+            </div>
+          </article>
+        </section>
+        <!-- element zone -->
+        <section id="element_zone">
+          <article>
+            <p id="title-zone-automate">PARCE QUE C'EST PLUS SIMPLE D'AVOIR DE L'ARGENT FACILE</p>
+            <div id="card-automate"></div>
+          </article>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
