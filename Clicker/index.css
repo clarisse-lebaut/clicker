@@ -1,0 +1,270 @@
+body{
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url(./img/jpeg/fondbanque.jpeg);
+    background-repeat: no-repeat;
+    background-position-y: 70%;
+    background-size: cover;
+    overflow: scroll;
+    overflow-y: visible;
+    overflow-x: hidden;
+}
+
+h1{
+    text-align: center;
+    font-size: 40px;
+    text-shadow: 1px 5px 2px gold;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+/* --- savage bonus  --- */
+.savage-bonus-style{
+    width: 70px;
+    height: 70px;
+    z-index: +1;
+}
+
+.savage-bonus-style:active{
+    transform: translateY(2px);
+}
+
+/* --- zone for the pig and the money  --- */
+#sold{
+    background-color: hsla(0, 0%, 100%, 0.503);
+    text-shadow: 1px 5px 2px gray;
+    border-radius: 20px;
+    box-shadow: 0 1px 20px 1px black;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    max-height: 400px;
+}
+
+#info-money{
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.save {
+    width: 350px;
+    position: relative;
+}
+
+.money {
+
+    font-size: 50px;
+    position: absolute;
+    z-index: 1;
+}
+
+.rain-money {
+    transition: .10s;
+    animation: slideDown .5s;
+    z-index: -1;
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(-120px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+/*--- zone for the yellow billet - clicker ---*/
+#click_zone{
+    text-align: center;
+}
+
+#pic{
+    width: 350px;
+}
+
+#pic:active{
+    transform: translateY(7px);
+}
+
+#getMoney{
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 50px;
+    margin: auto;
+}
+
+.img-style {
+    transition: .3s;
+    animation: slideUp .3s;
+}
+
+@keyframes slideUp {
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(-150px);
+        opacity: 1;
+    }
+
+    0% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+}
+
+.button-style {
+    border: none;
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 2px 1px gray;
+}
+
+.button-style:active {
+    transform: translateY(2px);
+    box-shadow: 0 0 2px 1px gray;
+}
+
+/* --- design for the automate card --- */
+    /* container parent */
+#bonus_zone {
+    background-color: hsla(0, 0%, 100%, 0.503);
+    border-radius: 20px;
+    overflow: scroll;
+    overflow-x: hidden;
+    max-height: 400px;
+    scrollbar-color: gold;
+    box-shadow: 0 1px 20px 1px black;
+    margin: 20px;
+    height : 500px;
+}
+
+::-webkit-scrollbar-button {
+    color: aqua;
+}
+
+    /* here is just for title of the shop zone */
+#shop_zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#shop-title{
+    text-align: center;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 2px 0 2px rgb(128, 128, 128);
+    border-radius: 20px;
+    padding :10px;
+}
+
+span.style-font{
+    font-weight: 900;
+    color:red;
+}
+
+.card-style{
+    background-image: url(./img/jpg/billetvert.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin: 10px;
+    box-shadow: 0 2px 0px 2px gray;
+}
+
+.card-style:active{
+    transform: translateY(2px);
+}
+
+.image-card-style,
+.title-card-style,
+.price-card-style,
+.context-card-style {
+    display: flex;
+    justify-content: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+    text-shadow: 1px 5px 2px black;
+    padding: 15px;
+}
+
+.image-card-style{
+    grid-column: 1/2;
+}
+
+.title-card-style {
+    grid-column: 2/4;
+}
+
+.price-card-style {
+    grid-column: 4/5;
+}
+
+.context-card-style {
+    grid-column: 1/5;
+}
+
+
+/*--- automate zone  --- */
+#element_zone {
+    gap: 20px;
+    grid-column: 1/4;
+    background-color: hsla(0, 0%, 100%, 0.503);
+    border-radius: 20px;
+    overflow: scroll;
+    overflow-x: hidden;
+    scrollbar-color: gold;
+    box-shadow: 0 1px 20px 1px black;
+    margin: 20px;
+    height : 500px;
+}
+
+#title-zone-automate{
+    text-align: center;
+    margin : 10px;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 2px 0 2px rgb(128, 128, 128);
+    border-radius: 20px;
+}
+
+.disposition-card{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.automate-card-style{
+    background-image: linear-gradient(to right, blue, red); /* grande importance des virgule entre chaque paramètre */
+    margin: 20px;
+    align-items: center;
+    width: 100%/3;
+    height: 200px;
+    box-shadow: 0px 2px 10px 2px gray;
+}
+
+.automate-icon{
+    width: 50px;
+    height: 50px;
+}

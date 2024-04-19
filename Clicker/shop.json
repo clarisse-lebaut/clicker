@@ -1,0 +1,76 @@
+{
+  "automates": [
+    {
+      "id": 1,
+      "sprite": "",
+      "name": "Empaucher l'argent",
+      "cost": 10.0,
+      "unlockCost": 0.0,
+      "yield": 1.0
+    },
+    {
+      "id": 2,
+      "sprite": "asset/background/arnaqueur.jpeg",
+      "name": "Arnaqueur",
+      "cost": 100.0,
+      "unlockCost": 50.0,
+      "yield": 5.0
+    },
+    {
+      "id": 3,
+      "sprite": "asset/background/boursier.jpeg",
+      "name": "Boursier",
+      "cost": 1000.0,
+      "unlockCost": 500.0,
+      "yield": 10.0
+    },
+    {
+      "id": 4,
+      "sprite": "asset/background/banque.jpeg",
+      "name": "Banque Générale",
+      "cost": 10000.0,
+      "unlockCost": 5000.0,
+      "yield": 50.0
+    },
+    {
+      "id": 5,
+      "sprite": "asset/background/fond.jpeg",
+      "name": "Fonds",
+      "cost": 100000.0,
+      "unlockCost": 50000.0,
+      "yield": 100.0
+    },
+    {
+      "id": 6,
+      "sprite": "asset/background/président.jpeg",
+      "name": "Président",
+      "cost": 1000000.0,
+      "unlockCost": 500000.0,
+      "yield": 500.0
+    },
+    {
+      "id": 7,
+      "sprite": "asset/background/actionnaire.jpeg",
+      "name": "Actionnaire",
+      "cost": 10000000.0,
+      "unlockCost": 5000000.0,
+      "yield": 1000.0
+    },
+    {
+      "id": 8,
+      "sprite": "asset/background/fournisseur.jpeg",
+      "name": "Fournisseur",
+      "cost": 100000000.0,
+      "unlockCost": 50000000.0,
+      "yield": 5000.0
+    },
+    {
+      "id": 9,
+      "sprite": "asset/background/entreprise.jpeg",
+      "name": "Entreprise",
+      "cost": 1000000000.0,
+      "unlockCost": 500000000.0,
+      "yield": 10000.0
+    }
+  ]
+}
