@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div></div>
+
+    <p id="Convert"></p>
+    <p id="min"></p>
+    <p id="secondes"></p>
+
+    <script>
+      setInterval(TimeInterval, 1000);
+      let start = 0;
+      let CompleteTime = localStorage["Final"];
+
+      function TimeInterval() {
+        let hour = parseInt(CompleteTime / 3600.0);
+        let min = parseInt((CompleteTime / 3600.0 - parseInt(hour)) * 60);
+        let secondes = parseInt(
+          ((CompleteTime / 3600.0 - parseInt(hour)) * 60 - min) * 60
+        );
+        document.getElementById("CompleteTime").innerHTML = CompleteTime++;
+        localStorage.setItem("Final", JSON.stringify(+CompleteTime + -1));
+        console.log(JSON.parse(start));
+        localStorage.getItem("Final");
+        document.getElementById("Convert").innerHTML =
+          hour + " : " + min + " : " + secondes++;
+      }
+    </script>
+  </body>
+</html>
