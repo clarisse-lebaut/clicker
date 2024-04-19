@@ -9,12 +9,7 @@ const transactionQuantitiesLabel = document.querySelectorAll('.transactionQuanti
 let purchasedAutomates = null;
 let money = 0;
 const numberFormat = Intl.NumberFormat('fr-FR');
-
-// setInterval(() => {
-//   money += 10000;
-//   elemMoney.innerText = `Money: ${numberFormat.format(money)} €`;
-//   updateAutomateShopList();
-// }, 1000);
+let interval = null;
 
 function getTransactionModeValue() {
   let output = '';
@@ -71,6 +66,7 @@ function addAutomateItem(purchasedAutomate) {
     }
 
     currentCost = purchasedAutomate.object.cost * purchasedAutomate.count * transactionQuantity;
+
     window.localStorage.setItem('purchasedAutomates', JSON.stringify(purchasedAutomates));
     elemMoney.innerText = `Money: ${numberFormat.format(money)} €`;
     container.innerText = `> ${purchasedAutomate.object.name} | Cost: ${
@@ -113,25 +109,25 @@ function updateQuantitiesText() {
 fetch('shop.json')
   .then((response) => response.json())
   .then((data) => {
-    // Generates local variables
-    if (window.localStorage.getItem('purchasedUpgrades') === null) {
-      window.localStorage.setItem('purchasedUpgrades', JSON.stringify([]));
-    }
-
     if (window.localStorage.getItem('purchasedAutomates') === null) {
       window.localStorage.setItem('purchasedAutomates', JSON.stringify([]));
     }
 
+    const automates = data.automates;
+    purchasedAutomates = JSON.parse(window.localStorage.getItem('purchasedAutomates'));
+
     elemMoney.innerText = `Money: ${numberFormat.format(money)} €`;
     btnGetMoney.addEventListener('click', () => {
-      money++;
+      let yield = 1;
+
+      purchasedAutomates.forEach((purchasedAutomate) => {
+        yield += purchasedAutomate.object.yield * purchasedAutomate.count;
+      });
+
+      money += yield;
       elemMoney.innerText = `Money: ${numberFormat.format(money)} €`;
       updateAutomateShopList();
     });
-
-    const automates = data.automates;
-    const upgrades = data.upgrades;
-    purchasedAutomates = JSON.parse(window.localStorage.getItem('purchasedAutomates'));
 
     // Adds all automates with a buy amount of 0.
     if (purchasedAutomates.length === 0) {
@@ -161,10 +157,6 @@ fetch('shop.json')
       transactionMode.addEventListener('click', () => {
         updateQuantitiesText();
       });
-    });
-
-    upgradesListItems.forEach((item) => {
-      const li = document.createElement('li');
     });
 
     updateAutomateShopList();
