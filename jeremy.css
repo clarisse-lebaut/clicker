@@ -1,0 +1,50 @@
+#automatesListItems,
+.automate-item,
+.automate-item__count,
+.automate-item__content {
+  display: flex;
+}
+
+#automatesListItems {
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.automate-item {
+  user-select: none;
+  background-color: blueviolet;
+  height: 100px;
+}
+
+.automate-item__count {
+  width: fit-content;
+  min-width: 200px;
+  padding-inline: 1rem;
+  align-items: center;
+  justify-content: center;
+  background-color: aqua;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.automate-item__content {
+  flex-direction: column;
+  width: 100%;
+  background-color: blue;
+}
+
+.automate-item__title,
+.automate-item__cost {
+  height: 100%;
+  margin-block: 0;
+  display: flex;
+  align-items: center;
+}
+
+.automate-item__title {
+  background-color: brown;
+}
+
+.automate-item__cost {
+  background-color: bisque;
+}
