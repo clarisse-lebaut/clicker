@@ -1,5 +1,5 @@
 
-const solde = document.querySelector('#addMoney'); // back div for the number of point / money
+const pay = document.querySelector('#addMoney'); // back div for the number of point / money
 const image = document.getElementById('getMoney'); // back click evenement on the button to make appear the money aside the big cash
 const btn = document.getElementById('getMoney');
 const infoLevel = document.getElementById('level');
@@ -59,7 +59,7 @@ setInterval(() => {
 }, 1000);
 
 function updateClickText() {
-  solde.textContent = `${numberFormat.format(money)} €`; // increase value on each click
+  pay.textContent = `${numberFormat.format(money)} €`; // increase value on each click
 }
 
 function updateShopList() {
@@ -85,11 +85,11 @@ function updateShopList() {
       price.classList.add('price-card-style');
       newCard.appendChild(price);
 
-      const illustration = document.createElement('img');
-      illustration.src = purchasedAutomate.object.img; // picture of the automate
-      illustration.style.width = '100px';
-      illustration.classList.add('image-card-style');
-      newCard.appendChild(illustration);
+      const drawing = document.createElement('img');
+      drawing.src = purchasedAutomate.object.img; // picture of the automate
+      drawing.style.width = '100px';
+      drawing.classList.add('image-card-style');
+      newCard.appendChild(drawing);
 
       const countText = document.createElement('p');
       countText.innerText = purchasedAutomate.count; // count how many automate user have
@@ -134,7 +134,7 @@ function updateShopList() {
 }
 
 function updatePurchasedList() {
-  //illustration index for the automate present in the end of the page
+  //drawing index for the automate present in the end of the page
   const imagesList = [
     'assets/img/empocher.jpeg',
     'assets/img/arnaqueur.jpeg',
@@ -309,7 +309,7 @@ function randomElement() {
   //create the card where we have the random bonus
   const randomBonusCard = document.getElementById('randomBonusCard');
   randomBonusCard.innerHTML = '';
-  //create the illustration of the random bonus
+  //create the drawing of the random bonus
   const bonus = document.createElement('img');
   bonus.src = 'assets/img/bonus.png';
 

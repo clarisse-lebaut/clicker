@@ -51,7 +51,7 @@ h1 {
   transform: translateY(2px);
 }
 
-/* --- zone for the pig and the money  --- */
+/* --- area for the pig and the money  --- */
 #sold {
   background-color: hsla(0, 0%, 100%, 0.503);
   text-shadow: 1px 5px 2px gray;
@@ -107,8 +107,8 @@ h1 {
   }
 }
 
-/*--- zone for the yellow billet - clicker ---*/
-#click_zone {
+/*--- area for the yellow billet - clicker ---*/
+#click_area {
   text-align: center;
 }
 
@@ -166,7 +166,7 @@ h1 {
 
 /* --- design for the automate card --- */
 /* container parent */
-#bonus_zone {
+#bonus_area {
   background-color: hsla(0, 0%, 100%, 0.503);
   border-radius: 20px;
   overflow: scroll;
@@ -178,15 +178,15 @@ h1 {
   height: 500px;
 }
 
-/* here is just for title of the shop zone */
-#shop_zone {
+/* here is just for title of the shop area */
+#shop_area {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
 }
 
-.shop_zone {
+.shop_area {
   display: flex;
   flex-direction: column;
   background-color: rgb(255, 255, 255);
@@ -313,8 +313,8 @@ span.style-font {
   margin-top: 40px;
 }
 
-/*--- automate zone  --- */
-#element_zone {
+/*--- automate area  --- */
+#element_area {
   gap: 20px;
   grid-column: 1/4;
   background-color: hsla(0, 0%, 100%, 0.503);
@@ -324,7 +324,7 @@ span.style-font {
   height: 820px;
 }
 
-#title-zone-automate {
+#title-area-automate {
   text-align: center;
   color: black;
   font-size: 20px;
