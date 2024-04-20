@@ -1,3 +1,4 @@
+/* --- title part 'header of the page  --- */
 body {
   margin: auto;
   font-family: Arial, Helvetica, sans-serif;
@@ -86,12 +87,14 @@ h1 {
   margin-top: 20px;
 }
 
+/* a money for a clik back to the pig, to have a rain of money */
 .rain-money {
   transition: 0.1s;
   animation: slideDown 0.5s;
   z-index: -1;
 }
 
+/* animation for the rain money */
 @keyframes slideDown {
   0% {
     transform: translateY(-120px);
@@ -124,11 +127,13 @@ h1 {
   margin: auto;
 }
 
+/* a money for a click next to the cursor */
 .img-style {
   transition: 0.3s;
   animation: slideUp 0.3s;
 }
 
+/* animation for a money for a click next to the cursor */
 @keyframes slideUp {
   100% {
     transform: translateY(0px);

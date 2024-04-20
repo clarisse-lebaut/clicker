@@ -1,5 +1,6 @@
-const solde = document.querySelector('#addMoney'); // ici on récupère la div dans laquelle on va faire appaitre le nombre grandissant
-const image = document.getElementById('getMoney'); // ici on récupère les évènement sur le bouton (en gros le clic)
+
+const solde = document.querySelector('#addMoney'); // back div for the number of point / money
+const image = document.getElementById('getMoney'); // back click evenement on the button to make appear the money aside the big cash
 const btn = document.getElementById('getMoney');
 const infoLevel = document.getElementById('level');
 const automate = document.getElementById('card-automate');
@@ -9,6 +10,7 @@ const automatesListItems = document.querySelector('#automatesListItems');
 const transactionModes = document.getElementsByName('transactionModes');
 const transactionQuantities = document.getElementsByName('transactionQuantities');
 const transactionQuantitiesLabel = document.querySelectorAll('.transactionQuantitiesLabel');
+// back element to make appeart the log time
 const hours = document.querySelector('#hours');
 const minutes = document.querySelector('#minutes');
 const seconds = document.querySelector('#seconds');
@@ -16,7 +18,7 @@ const seconds = document.querySelector('#seconds');
 const numberFormat = Intl.NumberFormat('fr-FR');
 const pinkCashImagePath = 'assets/img/billetrose.svg';
 
-let money = parseInt(window.localStorage.getItem('money')) || 0; // on définit le nombre de point à 0
+let money = parseInt(window.localStorage.getItem('money')) || 0; // start the number of point at 0
 let purchasedAutomates = null;
 
 let countedSeconds = parseInt(window.localStorage.getItem('countedSeconds')) || 0;
@@ -57,7 +59,7 @@ setInterval(() => {
 }, 1000);
 
 function updateClickText() {
-  solde.textContent = `${numberFormat.format(money)} €`; //on augmente la valeur a chaque click, c'est une incrémentation de +1 par rapport ) la variable money, et elle apparait dans le corps de la page web
+  solde.textContent = `${numberFormat.format(money)} €`; // increase value on each click
 }
 
 function updateShopList() {
@@ -69,9 +71,9 @@ function updateShopList() {
 
       const newCard = document.createElement('div');
       newCard.classList.add('card-style');
-      // les éléments qui apparaissent dans la carte
+      // element in the card on the shop
       const bubbleTitle = document.createElement('p');
-      bubbleTitle.textContent = purchasedAutomate.object.name; // description de ce qu'on peut obtenir
+      bubbleTitle.textContent = purchasedAutomate.object.name; // title of what we can have
       bubbleTitle.classList.add('title-card-style');
       newCard.appendChild(bubbleTitle);
 
@@ -79,18 +81,18 @@ function updateShopList() {
       price.textContent =
         currentCost === 0
           ? numberFormat.format(purchasedAutomate.object.cost) + ' €'
-          : numberFormat.format(currentCost) + ' €'; // prix de l'article
+          : numberFormat.format(currentCost) + ' €'; // pirce of the article
       price.classList.add('price-card-style');
       newCard.appendChild(price);
 
       const illustration = document.createElement('img');
-      illustration.src = purchasedAutomate.object.img; // illustration de l'automate
+      illustration.src = purchasedAutomate.object.img; // picture of the automate
       illustration.style.width = '100px';
       illustration.classList.add('image-card-style');
       newCard.appendChild(illustration);
 
       const countText = document.createElement('p');
-      countText.innerText = purchasedAutomate.count;
+      countText.innerText = purchasedAutomate.count; // count how many automate user have
       countText.classList.add('count-card-style');
       newCard.appendChild(countText);
 
@@ -121,7 +123,7 @@ function updateShopList() {
         price.textContent =
           currentCost === 0
             ? numberFormat.format(purchasedAutomate.object.cost) + ' €'
-            : numberFormat.format(currentCost) + ' €'; // prix de l'article
+            : numberFormat.format(currentCost) + ' €'; // price of the article
         countText.innerText = purchasedAutomate.count;
 
         updateShopList();
@@ -132,6 +134,7 @@ function updateShopList() {
 }
 
 function updatePurchasedList() {
+  //illustration index for the automate present in the end of the page
   const imagesList = [
     'assets/img/empocher.jpeg',
     'assets/img/arnaqueur.jpeg',
@@ -303,16 +306,16 @@ fetch('shop.json')
   .catch((error) => console.error(error));
 
 function randomElement() {
-  //crée la carte dans laquelle il y a les informations
+  //create the card where we have the random bonus
   const randomBonusCard = document.getElementById('randomBonusCard');
   randomBonusCard.innerHTML = '';
-  // permet de crée le contenue du bonus
+  //create the illustration of the random bonus
   const bonus = document.createElement('img');
   bonus.src = 'assets/img/bonus.png';
 
   randomBonusCard.appendChild(bonus);
   randomBonusCard.classList.add('savage-bonus-style');
-
+  //make appear the random bonus anywhere on the docuement body
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
 
